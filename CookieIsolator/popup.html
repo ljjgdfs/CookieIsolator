@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="popup.css" rel="stylesheet" type="text/css">
+  <script src="jquery-1.7.2.min.js"></script>
+  <script src="popup.js"></script>
+</head>
+<body>
+
+<div class="separator"> Isolation Policy </div>
+<div class="menu">
+    <div class="item">
+    <label>
+    <input type="radio", name="policy", class="policy", value="none", id="none"> Disable <br>
+    </label>
+    </div>
+    <div class="item">
+    <label>
+    <input type="radio", name="policy", class="policy", value="basic", id="basic"> Basic Isolation<br>
+    </label>
+    </div>
+    <div class="item">
+    <label>
+    <input type="radio", name="policy", class="policy", value="loose", id="loose"> Loose Isolation<br>
+    </label>
+    </div>
+    <div class="item">
+    <label>
+    <input type="radio", name="policy", class="policy", value="strict", id="strict"> Strict Isolation<br>
+    </label>
+    </div>
+</div>
+
+<div class="separator"> Cookie Priority </div>
+
+<div class="menu">
+    <div class="item">
+        <label>
+            <input type="radio", name="priority", class="priority", value="http", id="http"> HTTP First <br>
+        </label>
+    </div>
+    <div class="item">
+        <label>
+            <input type="radio", name="priority", class="priority", value="https", id="https"> HTTPS First <br>
+        </label>
+    </div>
+</div>
+
+<div class="separator"> Management</div>
+
+<div class="menu"> 
+    <div id="clear" class="item">
+        <label style="padding-left:25px">Clear All</label>
+    </div>
+    <div id="clear_session" class="item">
+        <label style="padding-left:25px">Clear Session</label>
+    </div>
+    <div id="report" class="item">
+        <label style="padding-left:25px">Report Error</label>
+    </div>
+</div>
+</body>
+</html>

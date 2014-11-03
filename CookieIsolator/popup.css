@@ -1,0 +1,33 @@
+body {
+    background-color: #ffffff;
+    width: 130px;
+    height: 280px;
+}
+
+.menu {
+  width: 130px;
+  border-bottom: 1px solid #888888;
+}
+
+.menu .item {
+  margin:  0px;
+  border: solid 1px #FFFFFF;
+  color: #555555;
+}
+
+.menu .item:hover {
+    margin:  0px;
+    border: solid 1px #bcd;
+    background-color: #eeeeee;
+}
+
+.separator {
+    height: 20px;
+    margin-top: 5px;
+    margin: 3px, 3px;
+    border: 0;
+    border-bottom: 1px dashed #cccccc;
+    text-align: center;
+    color: #4444aa;
+    font-weight: bold;
+}
