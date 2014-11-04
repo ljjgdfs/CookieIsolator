@@ -34,6 +34,11 @@ function init() {
                 BGPage.openReportPage();
                 window.close();
             });
+    $('#about').click(
+            function() {
+                BGPage.openAboutPage();
+                window.close();
+            });
 }
 
 $("document").ready(init);

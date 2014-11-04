@@ -154,3 +154,13 @@ function openReportPage() {
         });
     });
 }
+
+function openAboutPage() {
+    var url = "about.html";
+
+    chrome.tabs.getSelected(null, function (tab) {
+        chrome.tabs.create({
+            url:url,
+        });
+    });
+}
