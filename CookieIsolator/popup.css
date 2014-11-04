@@ -2,6 +2,7 @@ body {
     background-color: #ffffff;
     width: 130px;
     height: 280px;
+    font-size: 15px;
 }
 
 .menu {
@@ -30,4 +31,5 @@ body {
     text-align: center;
     color: #4444aa;
     font-weight: bold;
+    font-size: 16px;
 }
