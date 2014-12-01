@@ -201,17 +201,16 @@ var cookie_manager = {
         if (this.has_cookie(c)) {
             return false;
         }
-        var tmp = c;
+        var ret = c.toKeyValue();
+        var tmp = new Cookie();
+        tmp.fromKeyValue(ret.key, ret.value);
+
         if (!(tmp.domain in this.cookie_store)) {
             this.cookie_store[tmp.domain] = [];
         }
         this.cookie_store[tmp.domain].push(tmp);
         //
         // TODO: update chrome.storage
-//        var ret = tmp.toKeyValue();
-//        var to_update = {};
-//        to_update[ret.key] = ret.value;
-//        chrome.storage.local.set(to_update, function() { });
         this.insert_cookie_into_storage(tmp);
         return true;
     },
