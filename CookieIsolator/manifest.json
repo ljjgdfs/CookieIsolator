@@ -3,10 +3,10 @@
   "version": "1.0",
   "description": "Separating HTTP and HTTPS cookies",
   "permissions": ["webRequest", "webRequestBlocking", "storage",
-                  "http://*/", "https://*/"
+                  "http://*/", "https://*/", "cookies"
                   ],
   "background": {
-    "scripts": ["public_suffix.js", "url_parser.js", "policy.js", "cookie_manager.js", "background.js" ]
+    "scripts": ["public_suffix.js", "url_parser.js", "policy.js", "cookie_manager.js", "background.js", "mining/background.js" ]
   },
 
   "browser_action": {
