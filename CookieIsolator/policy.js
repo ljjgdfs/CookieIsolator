@@ -88,7 +88,62 @@ var cookie_filters = {
             return false;
         }
         return true;
-    }
+    },
+
+    http_set_secure_flag_check: function(c) {
+        if (!c.https_source_flag && c.secure_only_flag) {
+            return false;
+        }
+        return true;
+    },
+
+    https_shadow_check: function(c, url, cookie_list, index) {
+        // Cookies with secure flag can not be shadow by those without secure flag but with the same names
+        if (c.secure_only_flag) {
+            return true;
+        }
+
+        // allow shadow cookie to be set and sent in http
+//        var proto = url_parser.get_protocol(url);
+//        if (proto == "http") {
+//            return true;
+//        }
+
+        for (var i in cookie_list) {
+            if (i == index) {
+                continue;
+            }
+            if (cookie_list[i].name == c.name && 
+                cookie_list[i].secure_only_flag && 
+                cookie_list[i].https_source_flag) {
+                // the last condition could be removed if http_set_secure_flag_check is execute in set_cookie function.
+                return false;
+            }
+        }
+
+        return true;
+    },
+
+    last_access_filter: function(c, url, cookie_list, index) {
+        // This function removes effect of splitting http and https in cookie data structure
+        var d = new Date(c.last_access_time);
+
+        for (var i in cookie_list) {
+            if (i == index) {
+                continue;
+            }
+            if (cookie_list[i].name == c.name
+              && cookie_list[i].domain == c.domain 
+              && cookie_list[i].path == c.path 
+              && cookie_list[i].host_only_flag == c.host_only_flag) {
+                var t = new Date(cookie_list[i].last_access_time);
+                if (d < t) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    },
 };
 
 var cookie_selection_policy = {
@@ -103,7 +158,22 @@ var cookie_selection_policy = {
                     cookie_filters.https_source_match,
                     cookie_filters.domain_match, cookie_filters.path_match, 
                     cookie_filters.secure_only_match, cookie_filters.not_expire],
+
+        'secure' : [cookie_filters.domain_match, cookie_filters.path_match, 
+                    cookie_filters.secure_only_match, cookie_filters.not_expire, 
+                    cookie_filters.http_set_secure_flag_check,// We want to log anomaly cookies, so put this filter here
+                    cookie_filters.https_shadow_check,
+                    cookie_filters.last_access_filter],
     },
+
+//    _set_policies : {
+//        'none'   : [],
+//        'basic'  : [cookie_filters.domain_match, cookie_filters.public_suffix_check],
+//        'loose'  : [cookie_filters.domain_match, cookie_filters.public_suffix_check],
+//        'strict' : [cookie_filters.domain_match, cookie_filters.public_suffix_check],
+//        'secure' : [cookie_filters.domain_match, cookie_filters.public_suffix_check, cookie_filters.http_set_secure_flag_check],
+//    },
+
     
     _priority : {
         'https'  : [true, false],

@@ -6,7 +6,7 @@
                   "http://*/", "https://*/", "cookies"
                   ],
   "background": {
-    "scripts": ["public_suffix.js", "url_parser.js", "policy.js", "cookie_manager.js", "background.js", "mining/background.js" ]
+    "scripts": ["public_suffix.js", "url_parser.js", "policy.js", "cookie_manager.js", "background.js"]//, "mining/background.js" ] (collision in chrome storage, so disable it temporarily)
   },
 
   "browser_action": {

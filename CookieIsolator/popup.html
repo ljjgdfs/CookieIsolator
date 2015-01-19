@@ -4,7 +4,8 @@
   <link href="popup.css" rel="stylesheet" type="text/css">
   <script src="jquery-1.7.2.min.js"></script>
   <script src="popup.js"></script>
-  <script src="mining/mining.js"></script>
+  <!--  <script src="mining/mining.js"></script> // this function was moved to
+  CookieLogger, so disable it temporarily -->
 </head>
 <body>
 
@@ -28,6 +29,11 @@
     <div class="item">
     <label>
     <input type="radio", name="policy", class="policy", value="strict", id="strict"> Strict Isolation<br>
+    </label>
+    </div>
+    <div class="item">
+    <label>
+    <input type="radio", name="policy", class="policy", value="secure", id="secure"> Ext Secure Flag <br>
     </label>
     </div>
 </div>

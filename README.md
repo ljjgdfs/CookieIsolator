@@ -9,6 +9,9 @@ Separating HTTP and HTTPS cookies
   *  Basic Isolation: Isolate HTTP and HTTPS cookies without blocking.
   *  Loose Isolation: HTTP cookies can only be sent in HTTP channel while HTTPS cookies can be sent in both HTTP (without secure flag) and HTTPS channel.
   *  Strict Isolation: HTTP cookies and HTTPS cookies can only be sent in HTTP and HTTPS channel separately.
+  *  Ext Secure Flag: Assure the integrity of cookies with secure flag:
+    ** Cookie secure flag cannot be set in HTTP channel;
+    ** Cookie with secure flag will not be shadowed by cookie who has a same name but does not have secure flag.
 
 2. Cookie Priority 
 

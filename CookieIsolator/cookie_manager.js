@@ -265,16 +265,20 @@ var cookie_manager = {
         var ret = candidate_cookie.filter(
                 function(item, index, array) {
                     for (var i in filters) {
-                        if (!filters[i](item, url)) {
+                        if (!filters[i](item, url, array, index)) {
                             return false;
                         }
                     }
                     return true;
                 });
 
-        var t = Date().toString();
+//        var t = Date().toString();
+//      This is a trick: differenciate the cookie time between sent and set
+        var t = new Date();
+        var t1 = new Date(t-1000);
+        var ts = t1.toString();
         for (var i in ret) {
-            ret[i].last_access_time = t;
+            ret[i].last_access_time = ts;
         };
 
         return ret;
